@@ -19,6 +19,7 @@ var cardsInPlay = [];
 var score = 0;
 var resetButton = document.getElementById('reset');
 var statusMessage = document.getElementById('status-message');
+var flipCount = 0;
 
 var createBoard = function() {
   for (var i = 0; i < cards.length; i++) {
@@ -42,6 +43,7 @@ var resetGame = function() {
   createBoard();
   statusMessage.textContent = "GAME RESET. TRY AGAIN!"
   resetButton.style.visibility = "hidden";
+  flipCount = 0;
 }
 
 var updateScore = function() {
@@ -65,18 +67,24 @@ var checkForMatch = function() {
     } else {
       statusMessage.textContent = "SORRY, TRY AGAIN!"
       cardsInPlay.length = 0;
+      resetButton.style.visibility = "visible";
     };
   };
 };
 
 var flipCard = function() {
-  var cardId = this.getAttribute('data-id');
-  this.setAttribute('src', cards[cardId].cardImage);
-  console.log('User Flipped ' + cards[cardId].rank);
-  console.log(cards[cardId].suit);
-  console.log(cards[cardId].cardImage);
-  cardsInPlay.push(cards[cardId].rank);
-  checkForMatch();
+  if (flipCount > 4) {
+    statusMessage.textContent = "STOP CHEATING :("
+  } else {
+    var cardId = this.getAttribute('data-id');
+   this.setAttribute('src', cards[cardId].cardImage);
+   console.log('User Flipped ' + cards[cardId].rank);
+   console.log(cards[cardId].suit);
+   console.log(cards[cardId].cardImage);
+   cardsInPlay.push(cards[cardId].rank);
+   checkForMatch();
+   flipCount++;
+  }
 };
 
 resetButton.addEventListener('click', resetGame);
