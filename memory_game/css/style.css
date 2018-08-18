@@ -43,6 +43,15 @@ p {
   font-family: "Droid Serif", serif;
   line-height: 26px;
   font-size: 18px;
+  text-align: justify;
+}
+
+#objective {
+  display: inline;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+  border: 2px dashed black;
 }
 
 a {
@@ -97,7 +106,17 @@ footer {
 }
 
 .status {
-  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 400px 400px;
+  height: 30px;
+}
+
+#score {
+ align-self: start;
+}
+
+#message {
+  align-self: end;
 }
 
 #reset {

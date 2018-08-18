@@ -47,7 +47,7 @@ var updateScore = function() {
   if (score < 2) {
     score++;
     console.log('Score is ' + score);
-    document.getElementById('score').textContent = score;
+    document.getElementById('score').textContent = "Score: " + score;
     if (score === 2) {
       statusMessage.textContent = "YOU WIN!";
     }
