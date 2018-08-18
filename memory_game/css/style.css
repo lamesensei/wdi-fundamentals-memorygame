@@ -51,7 +51,10 @@ p {
   text-align: center;
   font-weight: bold;
   padding: 5px;
-  border: 2px dashed black;
+  border: 2px dotted black;
+}
+#objective:hover {
+  background: yellow;
 }
 
 a {
@@ -121,6 +124,15 @@ footer {
 
 #reset {
   margin-top: 20px;
+  border: 2px solid white;
+  color: white;
+  background: #00a6b3;
+  font-size: 15px;
+  font-weight: bold;
+  visibility: hidden;
+}
+#reset:hover {
+  background: #f15b31;
 }
 
 #lj {
