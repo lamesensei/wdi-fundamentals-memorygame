@@ -59,7 +59,7 @@ a:hover {
 }
 
 img {
-  margin: 40px 8px 0 8px;
+  margin: 30px 8px 0 8px;
 }
 
 footer {
@@ -94,4 +94,19 @@ footer {
 .name {
   color: #f15b31;
   font-weight: 700;
+}
+
+.status {
+  margin-bottom: 0;
+}
+
+#reset {
+  margin-top: 20px;
+}
+
+#lj {
+  color: yellow;
+  border-bottom: 2px solid yellow;
+  margin: 0;
+  padding: 0;
 }

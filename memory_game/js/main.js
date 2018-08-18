@@ -17,6 +17,8 @@ var cards = [{
 }];
 var cardsInPlay = [];
 var score = 0;
+var resetButton = document.getElementById('reset');
+var statusMessage = document.getElementById('status-message');
 
 var createBoard = function() {
   for (var i = 0; i < cards.length; i++) {
@@ -34,22 +36,32 @@ var resetGame = function() {
     cardElement.remove();
     console.log('removeboard' + i);
   }
+  score = -1;
+  cardsInPlay.length = 0;
+  updateScore();
+  createBoard();
+  statusMessage.textContent = "GAME RESET. TRY AGAIN!"
 }
 
 var updateScore = function() {
-  score++;
-  console.log('Score is ' + score);
-  document.getElementById('score').textContent = score;
+  if (score < 2) {
+    score++;
+    console.log('Score is ' + score);
+    document.getElementById('score').textContent = score;
+    if (score === 2) {
+      statusMessage.textContent = "YOU WIN!";
+    }
+  }
 }
 
 var checkForMatch = function() {
   if (cardsInPlay.length === 2) {
     if (cardsInPlay[0] === cardsInPlay[1]) {
-      alert("You found a match!");
+      statusMessage.textContent = "MATCH FOUND!"
       cardsInPlay.length = 0;
       updateScore();
     } else {
-      alert("Sorry, try again.");
+      statusMessage.textContent = "SORRY, TRY AGAIN!"
       cardsInPlay.length = 0;
     };
   };
@@ -65,5 +77,5 @@ var flipCard = function() {
   checkForMatch();
 };
 
-document.getElementById('reset').addEventListener('click', resetGame);
+resetButton.addEventListener('click', resetGame);
 createBoard();
