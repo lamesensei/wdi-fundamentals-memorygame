@@ -41,6 +41,7 @@ var resetGame = function() {
   updateScore();
   createBoard();
   statusMessage.textContent = "GAME RESET. TRY AGAIN!"
+  resetButton.style.visibility = "hidden";
 }
 
 var updateScore = function() {
@@ -50,6 +51,7 @@ var updateScore = function() {
     document.getElementById('score').textContent = "Score: " + score;
     if (score === 2) {
       statusMessage.textContent = "YOU WIN!";
+      resetButton.style.visibility = "visible";
     }
   }
 }
