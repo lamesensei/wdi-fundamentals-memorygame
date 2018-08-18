@@ -16,24 +16,66 @@ var cards = [{
   cardImage: "images/king-of-diamonds.png"
 }];
 var cardsInPlay = [];
+var score = 0;
+var resetButton = document.getElementById('reset');
+var statusMessage = document.getElementById('status-message');
+
+var createBoard = function() {
+  for (var i = 0; i < cards.length; i++) {
+    var cardElement = document.createElement('img');
+    cardElement.setAttribute('src', 'images/back.png');
+    cardElement.setAttribute('data-id', i);
+    cardElement.addEventListener('click', flipCard);
+    document.getElementById('game-board').appendChild(cardElement);
+  }
+}
+
+var resetGame = function() {
+  for (var i = 0; i < cards.length; i++) {
+    var cardElement = document.querySelector('img');
+    cardElement.remove();
+    console.log('removeboard' + i);
+  }
+  score = -1;
+  cardsInPlay.length = 0;
+  updateScore();
+  createBoard();
+  statusMessage.textContent = "GAME RESET. TRY AGAIN!"
+}
+
+var updateScore = function() {
+  if (score < 2) {
+    score++;
+    console.log('Score is ' + score);
+    document.getElementById('score').textContent = "Score: " + score;
+    if (score === 2) {
+      statusMessage.textContent = "YOU WIN!";
+    }
+  }
+}
 
 var checkForMatch = function() {
   if (cardsInPlay.length === 2) {
     if (cardsInPlay[0] === cardsInPlay[1]) {
-      alert("You found a match!");
+      statusMessage.textContent = "MATCH FOUND!"
+      cardsInPlay.length = 0;
+      updateScore();
     } else {
-      alert("Sorry, try again.");
-    }
+      statusMessage.textContent = "SORRY, TRY AGAIN!"
+      cardsInPlay.length = 0;
+    };
   };
 };
 
-var flipCard = function(cardId) {
+var flipCard = function() {
+  var cardId = this.getAttribute('data-id');
+  this.setAttribute('src', cards[cardId].cardImage);
   console.log('User Flipped ' + cards[cardId].rank);
   console.log(cards[cardId].suit);
   console.log(cards[cardId].cardImage);
   cardsInPlay.push(cards[cardId].rank);
+  checkForMatch();
 };
 
-flipCard(0);
-flipCard(2);
-checkForMatch();
+resetButton.addEventListener('click', resetGame);
+createBoard();
