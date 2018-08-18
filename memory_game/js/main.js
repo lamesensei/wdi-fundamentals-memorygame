@@ -28,6 +28,14 @@ var createBoard = function() {
   }
 }
 
+var resetGame = function() {
+  for (var i = 0; i < cards.length; i++) {
+    var cardElement = document.querySelector('img');
+    cardElement.remove();
+    console.log('removeboard' + i);
+  }
+}
+
 var updateScore = function() {
   score++;
   console.log('Score is ' + score);
@@ -43,7 +51,7 @@ var checkForMatch = function() {
     } else {
       alert("Sorry, try again.");
       cardsInPlay.length = 0;
-    }
+    };
   };
 };
 
@@ -57,4 +65,5 @@ var flipCard = function() {
   checkForMatch();
 };
 
+document.getElementById('reset').addEventListener('click', resetGame);
 createBoard();
